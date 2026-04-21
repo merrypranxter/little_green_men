@@ -24,21 +24,34 @@ little_green_men/
 ├── sketches/
 │   ├── p5js/
 │   │   ├── alien_dancer.js
+│   │   ├── alien_dancer_standalone.html   ← iframe target for gallery
 │   │   ├── alien_acid.js
+│   │   ├── alien_acid_standalone.html
 │   │   ├── alien_ufo.js
-│   │   └── alien_pixel.js
+│   │   ├── alien_ufo_standalone.html
+│   │   ├── alien_pixel.js
+│   │   ├── alien_pixel_standalone.html
+│   │   └── _p5_template.html             ← boilerplate for new p5 sketches
 │   └── canvas/
 │       └── alien_base.js
 ├── shaders/
 │   ├── alien_head.frag
+│   ├── alien_head_demo.html              ← WebGL runner for alien_head.frag
 │   ├── alien_psychedelic.frag
-│   └── alien_scanlines.frag
+│   ├── alien_psychedelic_demo.html
+│   ├── alien_scanlines.frag
+│   ├── alien_scanlines_demo.html
+│   └── _webgl_template.html             ← boilerplate for new shader demos
 ├── assets/
 │   └── svg/
 │       ├── alien_head.svg
 │       └── alien_full.svg
+├── styles/
+│   └── alien-tokens.css                 ← shared design tokens
 ├── gallery/
 │   └── index.html
+├── AGENTS.md                            ← instructions for AI agents building this repo
+├── CONTRIBUTING.md
 ├── index.html
 ├── README.md
 ├── LICENSE
@@ -1571,3 +1584,672 @@ jobs:
 4. `git push origin main`
 5. Enable GitHub Pages in repo settings → Pages → Source: GitHub Actions
 6. Start building: open `sketches/p5js/alien_dancer.js` and make him DANCE
+
+
+### ===== FILE: AGENTS.md =====
+
+# AGENTS.md — Instructions for AI Agents
+
+> Read this FIRST before touching anything in this repo.
+
+## What This Repo Is
+
+A creative coding laboratory for the **little green man** — the kitschy green oval-headed alien as a visual art trope. Sketches, shaders, SVGs, and documentation. **Static files only. No build system. No frameworks.**
+
+## Stack Rules (DO NOT VIOLATE)
+
+- **No npm, no bundler, no build step.** Everything must run by opening an HTML file.
+- **No React, Vue, Angular, Svelte, or any SPA framework.** Vanilla JS only.
+- **No Tailwind, Bootstrap, or CSS frameworks.** Use `styles/alien-tokens.css` for shared tokens.
+- **p5.js loaded from CDN only:** `https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js`
+- **Deployment target: GitHub Pages.** All paths must be relative. No server-side anything.
+
+## File Naming Conventions
+
+| Type | Convention | Example |
+|------|-----------|---------|
+| p5.js sketch logic | `alien_[name].js` | `alien_dancer.js` |
+| p5.js gallery target | `alien_[name]_standalone.html` | `alien_dancer_standalone.html` |
+| GLSL fragment shader | `alien_[name].frag` | `alien_head.frag` |
+| Shader WebGL runner | `alien_[name]_demo.html` | `alien_head_demo.html` |
+| SVG asset | `alien_[name].svg` | `alien_head.svg` |
+| Docs | `UPPERCASE.md` | `TROPE.md` |
+
+## Color Palette (ALWAYS use these, NEVER hardcode random values)
+
+```css
+--alien-green:   #39FF14   /* the canonical green — do not change */
+--alien-black:   #000000   /* void black background always */
+--alien-cyan:    #00FFFF
+--alien-magenta: #FF00FF
+--alien-gold:    #FFD700
+--alien-pink:    #FF69B4
+```
+
+## Typography (ALWAYS use these two fonts, loaded from Google Fonts)
+
+- `'Chakra Petch'` — headings, labels, UI
+- `'Share Tech Mono'` — monospace, data readouts, code aesthetic
+
+## Design Rules
+
+- Background is ALWAYS `#000000` — pure void black. No exceptions.
+- Border-radius is ALWAYS `0`. No rounded corners anywhere in the UI chrome.
+- The alien green `#39FF14` should glow (`text-shadow` or `drop-shadow`) wherever possible.
+- All text labels in ALL CAPS when used as UI elements.
+
+## How Standalone HTML Files Work
+
+Every `alien_[name]_standalone.html` file MUST:
+1. Be fully self-contained (no external dependencies except CDN p5.js)
+2. Load the corresponding `alien_[name].js` via `<script src="./alien_[name].js"></script>`
+3. Use `_p5_template.html` as the base — copy and modify, don't invent from scratch
+4. Set canvas to fill the full viewport (not a fixed pixel size)
+5. Include no visible UI chrome — just the sketch, black background
+
+Every `alien_[name]_demo.html` shader runner MUST:
+1. Be fully self-contained
+2. Use `_webgl_template.html` as the base
+3. Load the `.frag` file contents inline (copy the shader code into the HTML)
+4. Pass `iTime` and `iResolution` uniforms on every frame
+5. Fill the full viewport
+
+## What "Done" Looks Like Per File Type
+
+**p5.js sketch JS file:**
+- [ ] Runs without errors in browser console
+- [ ] Has `setup()` and `draw()` functions
+- [ ] Has a header comment block explaining what it does
+- [ ] Animation loops smoothly (no stuttering, no infinite growth)
+
+**Standalone HTML:**
+- [ ] Opens in browser → sketch runs immediately, no interaction needed
+- [ ] Black background fills full viewport
+- [ ] No white flash on load
+- [ ] Gallery iframe renders it correctly at 280px wide
+
+**GLSL shader demo HTML:**
+- [ ] Canvas fills viewport
+- [ ] `iTime` increments, animation runs
+- [ ] `iResolution` matches canvas size on resize
+
+**SVG asset:**
+- [ ] Clean, no unnecessary groups or transforms
+- [ ] Viewbox defined so it scales correctly at any size
+- [ ] Works as `<img src>` AND inline `<svg>`
+
+## DO NOT
+
+- ❌ Add a package.json or any npm tooling
+- ❌ Use `localhost` or any server-dependent paths
+- ❌ Add TypeScript
+- ❌ Use `let` for canvas/GL context outside of setup — store on `window` or module scope
+- ❌ Use `alert()` or `console.log()` in production code
+- ❌ Add any alien images you find online — all assets are drawn procedurally or as SVG
+- ❌ Change the color palette without explicit instruction
+- ❌ Add border-radius to anything
+
+## When Adding a New Sketch
+
+1. Create `sketches/p5js/alien_[name].js`
+2. Create `sketches/p5js/alien_[name]_standalone.html` from `_p5_template.html`
+3. Add entry to `docs/REMIX_CATALOG.md` under "✅ Implemented"
+4. Add entry to the `sketches` array in `gallery/index.html`
+
+## When Adding a New Shader
+
+1. Create `shaders/alien_[name].frag`
+2. Create `shaders/alien_[name]_demo.html` from `_webgl_template.html`
+3. Add entry to `docs/REMIX_CATALOG.md`
+4. Add entry to the `sketches` array in `gallery/index.html`
+
+
+### ===== FILE: sketches/p5js/_p5_template.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_SKETCHNAME</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <!-- REPLACE: point to the actual sketch file -->
+  <script src="./alien_SKETCHNAME.js"></script>
+  <script>
+    // Make canvas fill viewport and handle resize
+    // This runs AFTER the sketch's setup() via p5 instance mode override.
+    // If your sketch uses createCanvas(400,400), replace with:
+    //   createCanvas(windowWidth, windowHeight)
+    // and add:
+    //   function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+  </script>
+</body>
+</html>
+
+
+### ===== FILE: sketches/p5js/alien_dancer_standalone.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_dancer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="./alien_dancer.js"></script>
+</body>
+</html>
+
+
+### ===== FILE: sketches/p5js/alien_acid_standalone.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_acid</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="./alien_acid.js"></script>
+</body>
+</html>
+
+
+### ===== FILE: sketches/p5js/alien_ufo_standalone.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_ufo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="./alien_ufo.js"></script>
+</body>
+</html>
+
+
+### ===== FILE: sketches/p5js/alien_pixel_standalone.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_pixel</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="./alien_pixel.js"></script>
+</body>
+</html>
+
+
+### ===== FILE: shaders/_webgl_template.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_SHADERNAME</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    canvas { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+// ─── WebGL boilerplate for GLSL fragment shader demos ───────────────────────
+// Uniforms available in your .frag:
+//   uniform float iTime;        → seconds since start
+//   uniform vec2  iResolution;  → canvas width, height in px
+//
+// REPLACE: paste your .frag shader source into FRAG_SOURCE below.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const VERT_SOURCE = `
+  attribute vec2 a_position;
+  void main() { gl_Position = vec4(a_position, 0.0, 1.0); }
+`;
+
+const FRAG_SOURCE = `
+precision mediump float;
+uniform float iTime;
+uniform vec2 iResolution;
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / iResolution.xy;
+  gl_FragColor = vec4(uv, 0.5 + 0.5 * sin(iTime), 1.0);
+}
+`;
+// ─── REPLACE ABOVE WITH YOUR SHADER ─────────────────────────────────────────
+
+const canvas = document.getElementById('c');
+const gl = canvas.getContext('webgl');
+
+function compileShader(type, src) {
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+    console.error('Shader compile error:', gl.getShaderInfoLog(s));
+    return null;
+  }
+  return s;
+}
+
+const vert = compileShader(gl.VERTEX_SHADER, VERT_SOURCE);
+const frag = compileShader(gl.FRAGMENT_SHADER, FRAG_SOURCE);
+const prog = gl.createProgram();
+gl.attachShader(prog, vert);
+gl.attachShader(prog, frag);
+gl.linkProgram(prog);
+gl.useProgram(prog);
+
+// Full-screen quad
+const buf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+  -1,-1,  1,-1,  -1,1,
+  -1, 1,  1,-1,   1,1
+]), gl.STATIC_DRAW);
+
+const posLoc = gl.getAttribLocation(prog, 'a_position');
+gl.enableVertexAttribArray(posLoc);
+gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+const timeLoc = gl.getUniformLocation(prog, 'iTime');
+const resLoc  = gl.getUniformLocation(prog, 'iResolution');
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+  gl.viewport(0, 0, canvas.width, canvas.height);
+}
+window.addEventListener('resize', resize);
+resize();
+
+const startTime = performance.now();
+function render() {
+  const t = (performance.now() - startTime) / 1000;
+  gl.uniform1f(timeLoc, t);
+  gl.uniform2f(resLoc, canvas.width, canvas.height);
+  gl.drawArrays(gl.TRIANGLES, 0, 6);
+  requestAnimationFrame(render);
+}
+render();
+</script>
+</body>
+</html>
+
+
+### ===== FILE: shaders/alien_head_demo.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_head shader</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    canvas { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const VERT_SOURCE = `attribute vec2 a_position; void main() { gl_Position = vec4(a_position, 0.0, 1.0); }`;
+
+// alien_head.frag inlined:
+const FRAG_SOURCE = `
+precision mediump float;
+uniform float iTime;
+uniform vec2 iResolution;
+#define GREEN vec3(0.224, 1.0, 0.078)
+#define BLACK vec3(0.0)
+float sdEllipse(vec2 p, vec2 ab) {
+  p = abs(p); if (p.x > p.y) { p = p.yx; ab = ab.yx; }
+  float l = ab.y*ab.y - ab.x*ab.x;
+  float m = ab.x*p.x/l, n = ab.y*p.y/l;
+  float m2=m*m, n2=n*n;
+  float c = (m2+n2-1.0)/3.0, c3=c*c*c;
+  float q=c3+m2*n2*2.0, d=c3+m2*n2, g=m+m*n2;
+  float co;
+  if(d<0.0){float h=acos(q/c3)/3.0;float s=cos(h);float t2=sin(h)*sqrt(3.0);float rx=sqrt(-c*(s+t2+2.0)+m2);float ry=sqrt(-c*(s-t2+2.0)+m2);co=(ry+sign(l)*rx+abs(g)/(rx*ry)-m)/2.0;}
+  else{float h=2.0*m*n*sqrt(d);float s=sign(q+h)*pow(abs(q+h),1.0/3.0);float t2=sign(q-h)*pow(abs(q-h),1.0/3.0);float rx=-(s+t2)-c*4.0+2.0*m2;float ry=(s-t2)*sqrt(3.0);float rm=sqrt(rx*rx+ry*ry);co=(ry/sqrt(rm-rx)+2.0*g/rm-m)/2.0;}
+  vec2 r=ab*vec2(co,sqrt(1.0-co*co)); return length(r-p)*sign(p.y-r.y);
+}
+vec2 rot2(vec2 p,float a){return vec2(p.x*cos(a)-p.y*sin(a),p.x*sin(a)+p.y*cos(a));}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*iResolution.xy)/iResolution.y;
+  float t=iTime; float breathe=sin(t*1.2)*0.015;
+  float head=sdEllipse(uv,vec2(0.28+breathe,0.36+breathe));
+  float headOutline=sdEllipse(uv,vec2(0.30+breathe,0.38+breathe));
+  vec2 leUV=rot2(uv-vec2(-0.09,0.04),-0.35); float leftEye=sdEllipse(leUV,vec2(0.075,0.048));
+  vec2 reUV=rot2(uv-vec2(0.09,0.04),0.35);   float rightEye=sdEllipse(reUV,vec2(0.075,0.048));
+  vec2 mC=vec2(0.012,-0.14); float mD=abs(length(uv-mC)-0.06)-0.008;
+  float mA=atan(uv.y-mC.y,uv.x-mC.x); float mMask=step(0.15,mA)*step(mA,3.0);
+  vec3 col=BLACK;
+  col=mix(col,BLACK,smoothstep(0.005,-0.005,headOutline));
+  col=mix(col,GREEN,smoothstep(0.005,-0.005,head));
+  col=mix(col,BLACK,smoothstep(0.004,-0.004,leftEye));
+  col=mix(col,BLACK,smoothstep(0.004,-0.004,rightEye));
+  col=mix(col,BLACK,(1.0-smoothstep(0.0,0.006,mD))*mMask);
+  float glow=exp(-max(0.0,-head)*12.0)*0.4; col+=GREEN*glow*(0.5+0.5*sin(t*2.0));
+  float scan=sin(gl_FragCoord.y*3.14159*2.0)*0.5+0.5; col*=0.92+scan*0.08;
+  col*=clamp(1.0-length(uv)*0.8,0.0,1.0);
+  gl_FragColor=vec4(col,1.0);
+}`;
+
+const canvas=document.getElementById('c');
+const gl=canvas.getContext('webgl');
+function cs(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(s));return s;}
+const prog=gl.createProgram();gl.attachShader(prog,cs(gl.VERTEX_SHADER,VERT_SOURCE));gl.attachShader(prog,cs(gl.FRAGMENT_SHADER,FRAG_SOURCE));gl.linkProgram(prog);gl.useProgram(prog);
+const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+const posLoc=gl.getAttribLocation(prog,'a_position');gl.enableVertexAttribArray(posLoc);gl.vertexAttribPointer(posLoc,2,gl.FLOAT,false,0,0);
+const tL=gl.getUniformLocation(prog,'iTime'),rL=gl.getUniformLocation(prog,'iResolution');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;gl.viewport(0,0,canvas.width,canvas.height);}
+window.addEventListener('resize',resize);resize();
+const t0=performance.now();
+(function render(){const t=(performance.now()-t0)/1000;gl.uniform1f(tL,t);gl.uniform2f(rL,canvas.width,canvas.height);gl.drawArrays(gl.TRIANGLES,0,6);requestAnimationFrame(render);})();
+</script>
+</body>
+</html>
+
+
+### ===== FILE: shaders/alien_psychedelic_demo.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_psychedelic shader</title>
+  <style>* { margin:0; padding:0; } html,body { width:100%; height:100%; background:#000; overflow:hidden; } canvas { display:block; width:100%; height:100%; }</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const VS=`attribute vec2 a_position;void main(){gl_Position=vec4(a_position,0.0,1.0);}`;
+const FS=`
+precision mediump float;
+uniform float iTime;
+uniform vec2 iResolution;
+vec2 rot2(vec2 p,float a){return vec2(p.x*cos(a)-p.y*sin(a),p.x*sin(a)+p.y*cos(a));}
+float sdE(vec2 p,vec2 r){return(length(p/r)-1.0)*min(r.x,r.y);}
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.0;a*=0.5;}return v;}
+vec3 hsv(float h,float s,float v){vec3 c=abs(mod(h*6.0+vec3(0,4,2),6.0)-3.0)-1.0;return v*mix(vec3(1),clamp(c,0.0,1.0),s);}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*iResolution.xy)/iResolution.y;
+  float t=iTime;
+  vec2 wuv=uv+vec2(fbm(uv+t*0.15),fbm(uv+vec2(3.4,1.7)+t*0.12))*0.3;
+  float bg=fbm(wuv*2.5+t*0.1);
+  vec3 col=hsv(bg+t*0.08,0.9,0.6);
+  vec2 aUV=uv+vec2(sin(uv.y*8.0+t)*0.012,cos(uv.x*8.0+t)*0.012);
+  float head=sdE(aUV,vec2(0.27,0.35)),outline=sdE(aUV,vec2(0.29,0.37));
+  vec2 le=rot2(aUV-vec2(-0.09,0.04),-0.35),re=rot2(aUV-vec2(0.09,0.04),0.35);
+  float leye=sdE(le,vec2(0.072,0.046)),reye=sdE(re,vec2(0.072,0.046));
+  vec3 aG=hsv(0.33+sin(t*0.5)*0.08,1.0,1.0);
+  col=mix(col,vec3(0),smoothstep(0.008,-0.008,outline));
+  col=mix(col,aG,smoothstep(0.008,-0.008,head));
+  col=mix(col,vec3(0),smoothstep(0.005,-0.005,leye));
+  col=mix(col,vec3(0),smoothstep(0.005,-0.005,reye));
+  float lp=sdE(le,vec2(0.032,0.032)),rp=sdE(re,vec2(0.032,0.032));
+  vec3 pC=hsv(t*0.3,1.0,1.0);
+  col=mix(col,pC,smoothstep(0.004,-0.004,lp));
+  col=mix(col,pC,smoothstep(0.004,-0.004,rp));
+  col+=aG*exp(max(0.0,-head)*-15.0)*0.5;
+  gl_FragColor=vec4(col,1.0);
+}`;
+const c=document.getElementById('c'),gl=c.getContext('webgl');
+function cs(t,s){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh;}
+const p=gl.createProgram();gl.attachShader(p,cs(gl.VERTEX_SHADER,VS));gl.attachShader(p,cs(gl.FRAGMENT_SHADER,FS));gl.linkProgram(p);gl.useProgram(p);
+const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+const pl=gl.getAttribLocation(p,'a_position');gl.enableVertexAttribArray(pl);gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+const tL=gl.getUniformLocation(p,'iTime'),rL=gl.getUniformLocation(p,'iResolution');
+function resize(){c.width=innerWidth;c.height=innerHeight;gl.viewport(0,0,c.width,c.height);}
+window.addEventListener('resize',resize);resize();
+const t0=performance.now();(function r(){const t=(performance.now()-t0)/1e3;gl.uniform1f(tL,t);gl.uniform2f(rL,c.width,c.height);gl.drawArrays(gl.TRIANGLES,0,6);requestAnimationFrame(r);})();
+</script></body></html>
+
+
+### ===== FILE: shaders/alien_scanlines_demo.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_scanlines shader</title>
+  <style>* { margin:0; padding:0; } html,body { width:100%; height:100%; background:#000; overflow:hidden; } canvas { display:block; width:100%; height:100%; }</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const VS=`attribute vec2 a_position;void main(){gl_Position=vec4(a_position,0.0,1.0);}`;
+const FS=`
+precision mediump float;
+uniform float iTime;
+uniform vec2 iResolution;
+float sdE(vec2 p,vec2 r){return(length(p/r)-1.0)*min(r.x,r.y);}
+vec2 rot2(vec2 p,float a){return vec2(p.x*cos(a)-p.y*sin(a),p.x*sin(a)+p.y*cos(a));}
+float hash(float n){return fract(sin(n)*43758.5453);}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*iResolution.xy)/iResolution.y;
+  float t=iTime;
+  float gL=floor(uv.y*40.0),gT=floor(t*8.0);
+  float gl2=hash(gL+gT*100.0);
+  float gA=step(0.97,gl2)*hash(gT)*0.04;
+  uv.x+=gA*sign(sin(gL));
+  float ab=0.008+sin(t*0.7)*0.003;
+  vec2 uvR=uv+vec2(ab,0.0),uvG=uv,uvB=uv-vec2(ab,0.0);
+  float hR=sdE(uvR,vec2(0.27,0.35)),hG=sdE(uvG,vec2(0.27,0.35)),hB=sdE(uvB,vec2(0.27,0.35));
+  float oG=sdE(uvG,vec2(0.29,0.37));
+  vec2 le=rot2(uvG-vec2(-0.09,0.04),-0.35),re=rot2(uvG-vec2(0.09,0.04),0.35);
+  float leye=sdE(le,vec2(0.072,0.046)),reye=sdE(re,vec2(0.072,0.046));
+  vec3 col=vec3(0);
+  col.r=mix(col.r,0.0,smoothstep(0.008,-0.008,oG));col.r=mix(col.r,0.224,smoothstep(0.008,-0.008,hR));
+  col.g=mix(col.g,0.0,smoothstep(0.008,-0.008,oG));col.g=mix(col.g,1.0, smoothstep(0.008,-0.008,hG));
+  col.b=mix(col.b,0.0,smoothstep(0.008,-0.008,oG));col.b=mix(col.b,0.078,smoothstep(0.008,-0.008,hB));
+  col=mix(col,vec3(0),smoothstep(0.005,-0.005,leye));col=mix(col,vec3(0),smoothstep(0.005,-0.005,reye));
+  col*=0.85+(sin(gl_FragCoord.y*3.14159)*0.5+0.5)*0.15;
+  col+=step(0.995,hash(floor(uv.y*60.0)+floor(t*12.0)))*vec3(0.224,1.0,0.078)*0.3;
+  col+=(hash(dot(gl_FragCoord.xy,vec2(12.9898,78.233))+t*100.0)-0.5)*0.04;
+  col*=1.0-length(uv)*0.7;
+  gl_FragColor=vec4(col,1.0);
+}`;
+const c=document.getElementById('c'),gl=c.getContext('webgl');
+function cs(t,s){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh;}
+const p=gl.createProgram();gl.attachShader(p,cs(gl.VERTEX_SHADER,VS));gl.attachShader(p,cs(gl.FRAGMENT_SHADER,FS));gl.linkProgram(p);gl.useProgram(p);
+const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+const pl=gl.getAttribLocation(p,'a_position');gl.enableVertexAttribArray(pl);gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+const tL=gl.getUniformLocation(p,'iTime'),rL=gl.getUniformLocation(p,'iResolution');
+function resize(){c.width=innerWidth;c.height=innerHeight;gl.viewport(0,0,c.width,c.height);}
+window.addEventListener('resize',resize);resize();
+const t0=performance.now();(function r(){const t=(performance.now()-t0)/1e3;gl.uniform1f(tL,t);gl.uniform2f(rL,c.width,c.height);gl.drawArrays(gl.TRIANGLES,0,6);requestAnimationFrame(r);})();
+</script></body></html>
+
+
+### ===== FILE: styles/alien-tokens.css =====
+
+/*
+ * alien-tokens.css
+ * Shared design tokens for the little_green_men repo.
+ * Import this in every HTML file: <link rel="stylesheet" href="../styles/alien-tokens.css">
+ * (adjust relative path as needed)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  /* ── Color Palette ─────────────────────────────────────── */
+  --alien-green:      #39FF14;   /* THE green. canonical. non-negotiable. */
+  --alien-green-dim:  #1a7a08;   /* dimmed green for subtle elements */
+  --alien-green-glow: #39FF1440; /* glow / shadow color */
+  --alien-black:      #000000;   /* background always */
+  --alien-near-black: #0a0a0a;   /* card backgrounds */
+  --alien-cyan:       #00FFFF;   /* accent */
+  --alien-magenta:    #FF00FF;   /* accent */
+  --alien-gold:       #FFD700;   /* accent */
+  --alien-pink:       #FF69B4;   /* accent */
+  --alien-white:      #FFFFFF;   /* text on dark only */
+
+  /* ── Typography ────────────────────────────────────────── */
+  --font-display: 'Chakra Petch', monospace;
+  --font-mono:    'Share Tech Mono', monospace;
+
+  /* ── Spacing ───────────────────────────────────────────── */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+
+  /* ── Border ────────────────────────────────────────────── */
+  --border-color: var(--alien-green);
+  --border-dim:   var(--alien-green-dim);
+  --border-width: 1px;
+  /* border-radius is ALWAYS 0. no exceptions. */
+
+  /* ── Glow effects ──────────────────────────────────────── */
+  --glow-text:   0 0 10px var(--alien-green), 0 0 20px var(--alien-green-glow);
+  --glow-box:    0 0 8px var(--alien-green), 0 0 20px var(--alien-green-glow);
+  --glow-strong: 0 0 20px var(--alien-green), 0 0 40px var(--alien-green-glow);
+}
+
+/* ── Base reset ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* enforced globally */
+}
+
+html, body {
+  background: var(--alien-black);
+  color: var(--alien-green);
+  font-family: var(--font-display);
+  min-height: 100vh;
+}
+
+/* ── Utility classes ─────────────────────────────────────── */
+.glow-text  { text-shadow: var(--glow-text); }
+.glow-box   { box-shadow: var(--glow-box); }
+.glow-strong { text-shadow: var(--glow-strong); }
+
+.font-mono  { font-family: var(--font-mono); }
+.font-display { font-family: var(--font-display); }
+
+.text-dim   { color: var(--alien-green-dim); }
+.text-cyan  { color: var(--alien-cyan); }
+.text-magenta { color: var(--alien-magenta); }
+.text-gold  { color: var(--alien-gold); }
+
+.border-alien {
+  border: var(--border-width) solid var(--border-color);
+}
+
+.border-dim {
+  border: var(--border-width) solid var(--border-dim);
+}
+
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+}
+
+
+### ===== FILE: CONTRIBUTING.md =====
+
+# Contributing
+
+## Adding a New Sketch
+
+1. **Create the JS file:** `sketches/p5js/alien_[name].js`
+   - Must have `setup()` and `draw()`
+   - Use `createCanvas(windowWidth, windowHeight)` + `windowResized()`
+   - Header comment: what it does, what makes it interesting
+
+2. **Create the standalone HTML:** `sketches/p5js/alien_[name]_standalone.html`
+   - Copy from `sketches/p5js/_p5_template.html`
+   - Change the script src to your JS file
+   - Nothing else
+
+3. **Add to the catalog:** `docs/REMIX_CATALOG.md` under `✅ Implemented`
+
+4. **Add to gallery:** add an entry to the `sketches` array in `gallery/index.html`
+
+---
+
+## Adding a New Shader
+
+1. **Create the .frag file:** `shaders/alien_[name].frag`
+   - Must use `uniform float iTime` and `uniform vec2 iResolution`
+   - Header comment block required
+
+2. **Create the demo HTML:** `shaders/alien_[name]_demo.html`
+   - Copy from `shaders/_webgl_template.html`
+   - Paste your frag source into `FRAG_SOURCE`
+
+3. **Add to the catalog + gallery** (same as above)
+
+---
+
+## Rules
+
+- No build step. No npm. No frameworks. Static files only.
+- Background is always `#000000`.
+- Alien green is always `#39FF14`.
+- Import `styles/alien-tokens.css` for any HTML file with visible UI.
+- Border-radius stays at 0.
