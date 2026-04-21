@@ -1,0 +1,1573 @@
+# REPO SEED: little_green_men
+
+## Metadata
+- Name: little_green_men
+- Purpose: The little green man as an art trope — kitschy alien iconography, creative coding remixes, generative variants
+- Tech Stack: HTML/CSS/JS, p5.js, GLSL/WebGL, SVG
+- Deployment: GitHub Pages
+- License: MIT
+- GitHub: https://github.com/merrypranxter/little_green_men
+
+---
+
+## Directory Structure
+
+```
+little_green_men/
+├── .github/
+│   └── workflows/
+│       └── deploy-pages.yml
+├── docs/
+│   ├── TROPE.md
+│   ├── VISUAL_LANGUAGE.md
+│   └── REMIX_CATALOG.md
+├── sketches/
+│   ├── p5js/
+│   │   ├── alien_dancer.js
+│   │   ├── alien_acid.js
+│   │   ├── alien_ufo.js
+│   │   └── alien_pixel.js
+│   └── canvas/
+│       └── alien_base.js
+├── shaders/
+│   ├── alien_head.frag
+│   ├── alien_psychedelic.frag
+│   └── alien_scanlines.frag
+├── assets/
+│   └── svg/
+│       ├── alien_head.svg
+│       └── alien_full.svg
+├── gallery/
+│   └── index.html
+├── index.html
+├── README.md
+├── LICENSE
+└── .gitignore
+```
+
+---
+
+## File Contents
+
+### ===== FILE: README.md =====
+
+# 👽 little_green_men
+
+> *He is not a concept. He is a vibe. He is a vessel.*
+
+The little green man is one of the most persistent icons in human visual culture — a kitschy, pixelated, smirking ambassador from the collective unconscious. Big almond eyes. Oval head. Green. Always green. He's been on t-shirts, bumper stickers, memes, strobe-lit club posters, and embroidered patches since approximately forever.
+
+This repo is a creative coding laboratory dedicated to **him** — the little green man as an art trope. Not serious sci-fi. Not Zeta Reticuli lore. The **meme**. The **kitsch**. The dancing little dude. The alien smoking a doob. The alien in a tiny UFO. The alien with giant pupils looking right at you.
+
+---
+
+## What Lives Here
+
+| Directory | Contents |
+|-----------|----------|
+| `docs/` | Trope analysis, visual language spec, remix catalog |
+| `sketches/p5js/` | p5.js alien sketches — dancing, acid, ufo, pixel art |
+| `sketches/canvas/` | Vanilla canvas alien constructions |
+| `shaders/` | GLSL fragment shaders featuring alien aesthetics |
+| `assets/svg/` | Clean SVG alien assets for remixing |
+| `gallery/` | Interactive gallery page — all sketches browsable |
+
+---
+
+## The Canon
+
+The canonical little green man has:
+- **Oval/teardrop head** — wider at top, narrowing to small chin
+- **Two large almond-shaped black eyes** — angled inward slightly
+- **Tiny slit mouth** — usually a slight smirk
+- **Bright green fill** — #00FF00 or close — the MORE neon the better
+- **Black outline** — thick, pixel-y, badge/embroidery aesthetic
+- **Optional body** — spindly, often mid-dance, mid-wave, or just vibing
+
+---
+
+## Remix Variants Documented
+
+- 🛸 Classic head only
+- 💃 Full body dancer
+- 🍄 Acid / psychedelic pupils
+- 🌿 Smoking a joint
+- 🌀 Raymarched / 3D SDF version
+- ✨ Scanline / glitch aesthetic
+- 🎮 Pixel art version
+- 🔮 UV/blacklight poster version
+
+---
+
+## Stack
+
+- **p5.js** — sketches and animations
+- **GLSL** — shader variants
+- **SVG** — clean vector assets
+- **Vanilla HTML/CSS/JS** — gallery + demos
+
+---
+
+## Part of the Ecosystem
+
+This repo is one node in [@merrypranxter](https://github.com/merrypranxter)'s generative art ecosystem, alongside:
+- [`merrys_visual_bible`](https://github.com/merrypranxter/merrys_visual_bible) — creative/technical reference
+- [`raymarching`](https://github.com/merrypranxter/raymarching) — GLSL raymarching workbench
+- [`klein-fluid-sim`](https://github.com/merrypranxter/klein-fluid-sim) — non-orientable fluid dynamics
+
+---
+
+*"He's not from outer space. He's from the part of your brain that still thinks blacklight posters are cool."*
+
+---
+
+### ===== FILE: docs/TROPE.md =====
+
+# The Little Green Man — Trope Analysis
+
+## Origin & Lineage
+
+The "little green man" alien archetype is a 20th century folk image with roots in:
+
+- **1950s B-movie sci-fi** — cheap rubber suits, bug eyes, the "Martian" aesthetic
+- **Roswell cultural fallout (1947+)** — grey alien imagery mixing with existing green man tropes
+- **Cold War anxiety aesthetics** — aliens as otherness made cute/safe
+- **Punk/rave/counterculture adoption (80s-90s)** — alien iconography as anti-establishment, "we're all aliens here"
+- **Internet meme era** — complete memefication; alien = universal reaction image, stoner icon, dance GIF
+
+## The Split: Grey vs. Green
+
+There are TWO dominant alien archetypes and they are NOT the same:
+
+| Grey Alien | Little Green Man |
+|------------|-----------------|
+| Realistic / abduction narrative | Kitschy / playful |
+| Tall, elongated, disturbing | Short, round-headed, cute |
+| Grey or pale | BRIGHT GREEN |
+| Serious horror/sci-fi register | Comedy, camp, nostalgia |
+| Art Bell / The X-Files | Bumper stickers / rave flyers |
+
+**This repo is 100% the green one.**
+
+## Why He Endures
+
+1. **Maximal legibility** — recognizable at thumbnail size, at 1 color, at 8px resolution
+2. **Semantic emptiness** — he means nothing specific, so he can mean anything
+3. **Transgressive cuteness** — alien = other = outsider; he's become a mascot for freaks of all kinds
+4. **Color** — that specific neon green reads as radioactive, extraterrestrial, hyperreal; it's not a natural color
+5. **The smirk** — he always looks like he knows something you don't
+
+## Cultural Context
+
+The alien emoji 👽 is basically him. The dancing alien GIF is basically him. He's on:
+- Weed dispensary branding
+- Rave/festival merchandise
+- 90s/Y2K nostalgia aesthetics
+- Hacker/hacktivist aesthetics ("we come in peace... or do we")
+- LGBTQ+ outsider iconography
+- "I believe" bumper stickers
+- Hot Topic (rest in power)
+
+## The Trope as Art Object
+
+What makes him interesting as a **creative coding** subject:
+
+- **Simple geometry** = easy to parameterize: oval, two ellipses, line
+- **Color as character** = swapping that green tells a completely different story
+- **Infinitely remixable** = context is everything; same form, wildly different meaning
+- **Animation-friendly** = the dance, the wave, the saucer entrance
+- **Shader-friendly** = that green is begging to be phosphorescent, UV, glitch-distorted
+
+---
+
+### ===== FILE: docs/VISUAL_LANGUAGE.md =====
+
+# Little Green Man — Visual Language Spec
+
+Use this as a design reference for all sketches, shaders, and assets in this repo.
+
+## Core Geometry
+
+```
+HEAD:
+  shape: ellipse, slightly taller than wide
+  width: ~0.6 units
+  height: ~0.75 units
+  position: centered
+
+LEFT EYE:
+  shape: ellipse, almond (rotated ~-20deg)
+  fill: black
+  width: ~0.18 units
+  height: ~0.12 units
+  x: -0.14 from center
+  y: 0.05 from center
+
+RIGHT EYE:
+  shape: ellipse, almond (rotated ~+20deg)
+  fill: black
+  width: ~0.18 units
+  height: ~0.12 units
+  x: +0.14 from center
+  y: 0.05 from center
+
+MOUTH:
+  shape: short arc or line, slight upward curve
+  y: ~-0.2 from center
+  length: ~0.12 units
+
+BODY (optional):
+  spindly torso, 2 arms, 2 legs
+  mid-dance pose: arms out asymmetric, one leg kicked
+```
+
+## Color Palette
+
+| Element | Value | Notes |
+|---------|-------|-------|
+| Primary green | `#39FF14` | Neon green — the canonical one |
+| Alt green | `#00FF00` | More saturated, more "computer" |
+| Eye/outline black | `#000000` | Pure black always |
+| Background | `#000000` | Void black — the alien lives in darkness |
+| Glow color | `#39FF14` at 40% opacity | For bloom/glow effects |
+| Accent neon | `#FF00FF` or `#00FFFF` | For psychedelic variants |
+
+## Typography (if used)
+
+- **Chakra Petch** — primary display font
+- **Share Tech Mono** — code / data readout aesthetic
+- All caps preferred for alien content
+
+## Outline Style
+
+The classic little green man has a **thick black outline** — this reads as:
+- Badge / embroidered patch quality
+- Sticker aesthetic
+- Screen print aesthetic (which is perfect given the context)
+
+In GLSL: achieve with SDF step() and offset distance field
+In p5.js: draw black shape slightly larger, then green shape on top
+
+## Animation Vocabulary
+
+| Motion | Description |
+|--------|-------------|
+| The Sway | Gentle left-right oscillation, like he's vibing |
+| The Wave | One arm traces a sine curve |
+| The Dance | Full body, hip displacement, arm flail |
+| The Float | Slow vertical sine, implies anti-gravity |
+| The Appear | Descend from above or emerge from UFO |
+| The Pulse | Size oscillation — breathing or scared |
+| The Spin | Head rotation (2D: scale X for flip effect) |
+| The Distort | Psychedelic: SDF distortion, chromatic aberration |
+
+---
+
+### ===== FILE: docs/REMIX_CATALOG.md =====
+
+# Remix Catalog
+
+Documented variants of the little green man. Add new ones here as they're built.
+
+---
+
+## ✅ Implemented
+
+*(fill in as sketches are built)*
+
+---
+
+## 🗂 Planned
+
+### 1. Classic Head — `alien_head_static`
+**Desc**: Just the head. Clean. SVG + canvas versions.
+**Files**: `assets/svg/alien_head.svg`, `sketches/canvas/alien_base.js`
+
+### 2. Dancer — `alien_dancer`
+**Desc**: Full body, animated dance loop. Arms out, hip sway, the whole nine.
+**Files**: `sketches/p5js/alien_dancer.js`
+
+### 3. Acid Mode — `alien_acid`
+**Desc**: Head only, but the eyes are doing something wrong. Pupil dilation, chromatic aberration, color cycling.
+**Files**: `sketches/p5js/alien_acid.js`
+
+### 4. UFO Arrival — `alien_ufo`
+**Desc**: Classic saucer with beam of light. Alien descending/ascending in beam.
+**Files**: `sketches/p5js/alien_ufo.js`
+
+### 5. Pixel Art — `alien_pixel`
+**Desc**: Hard pixel grid, limited palette, Space Invaders energy.
+**Files**: `sketches/p5js/alien_pixel.js`
+
+### 6. Phosphorescent Shader — `alien_head.frag`
+**Desc**: GLSL head render with glow, scanlines, CRT vignette.
+**Files**: `shaders/alien_head.frag`
+
+### 7. Psychedelic Shader — `alien_psychedelic.frag`
+**Desc**: Domain warping on the alien form, color cycling, fractal background.
+**Files**: `shaders/alien_psychedelic.frag`
+
+### 8. Scanline / Glitch — `alien_scanlines.frag`
+**Desc**: VHS scanlines, RGB split, occasional glitch artifacts.
+**Files**: `shaders/alien_scanlines.frag`
+
+---
+
+## 💡 Ideas Queue
+
+- [ ] Alien with doob (particle smoke)
+- [ ] Alien reacting to music (audio FFT input)
+- [ ] Alien in blacklight UV palette
+- [ ] Alien as SDF raymarched 3D head
+- [ ] Alien emoji-style flat design variant
+- [ ] Alien as ASCII art generator
+- [ ] Alien head as lenticular / depth parallax effect
+- [ ] Alien stamp / silkscreen process simulation
+
+---
+
+### ===== FILE: sketches/p5js/alien_dancer.js =====
+
+// alien_dancer.js
+// The little green man, doing his thing.
+// Full body, animated dance loop.
+// Run in p5.js web editor or via gallery/index.html
+
+let t = 0;
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(0);
+  t += 0.04;
+  
+  translate(width / 2, height / 2 + 20);
+  
+  // Dance motion: hip sway
+  let hipSway = sin(t) * 12;
+  let hipBob = abs(sin(t * 2)) * -8;
+  
+  translate(hipSway * 0.3, hipBob);
+  
+  drawAlienBody(hipSway, t);
+  drawAlienHead(hipSway * 0.2);
+}
+
+function drawAlienBody(sway, t) {
+  push();
+  translate(0, 30);
+  
+  // Torso
+  fill(0);
+  noStroke();
+  ellipse(0, 0, 38, 50); // black backing
+  fill('#39FF14');
+  ellipse(0, 0, 30, 42);
+  
+  // Left arm
+  push();
+  rotate(-0.4 + sin(t + PI) * 0.5);
+  fill(0);
+  ellipse(0, -22, 22, 10);
+  fill('#39FF14');
+  ellipse(0, -20, 18, 8);
+  translate(0, -26);
+  fill(0); ellipse(0,0,14,14);
+  fill('#39FF14'); ellipse(0,0,10,10);
+  pop();
+  
+  // Right arm
+  push();
+  translate(0, 0);
+  rotate(0.4 + sin(t) * 0.5);
+  fill(0);
+  ellipse(0, -22, 22, 10);
+  fill('#39FF14');
+  ellipse(0, -20, 18, 8);
+  translate(0, -26);
+  fill(0); ellipse(0,0,14,14);
+  fill('#39FF14'); ellipse(0,0,10,10);
+  pop();
+  
+  // Left leg
+  push();
+  translate(-8, 20);
+  rotate(0.2 + sin(t) * 0.4);
+  fill(0); rect(-5, 0, 12, 32, 4);
+  fill('#39FF14'); rect(-4, 0, 10, 28, 3);
+  pop();
+  
+  // Right leg
+  push();
+  translate(8, 20);
+  rotate(-0.2 + sin(t + PI * 0.5) * 0.4);
+  fill(0); rect(-5, 0, 12, 32, 4);
+  fill('#39FF14'); rect(-4, 0, 10, 28, 3);
+  pop();
+  
+  pop();
+}
+
+function drawAlienHead(wobble) {
+  push();
+  translate(wobble, 0);
+  
+  // Head — black backing (outline)
+  fill(0);
+  noStroke();
+  ellipse(0, -10, 88, 105);
+  
+  // Head — green fill
+  fill('#39FF14');
+  ellipse(0, -10, 80, 96);
+  
+  // Left eye
+  push();
+  translate(-15, -8);
+  rotate(-0.35);
+  fill(0);
+  ellipse(0, 0, 28, 18);
+  pop();
+  
+  // Right eye
+  push();
+  translate(15, -8);
+  rotate(0.35);
+  fill(0);
+  ellipse(0, 0, 28, 18);
+  pop();
+  
+  // Mouth — slight smirk
+  stroke(0);
+  strokeWeight(3);
+  noFill();
+  arc(3, 12, 22, 10, 0.1, PI - 0.1);
+  
+  pop();
+}
+
+
+### ===== FILE: sketches/p5js/alien_acid.js =====
+
+// alien_acid.js
+// The little green man has taken something.
+// Eyes: dilating, chromatic aberration, color cycling.
+// Head only. He's having a moment.
+
+let t = 0;
+let pupilDilation = 0;
+let colorPhase = 0;
+
+function setup() {
+  createCanvas(400, 400);
+  colorMode(HSB, 360, 100, 100);
+}
+
+function draw() {
+  background(0, 0, 0);
+  t += 0.025;
+  colorPhase = (colorPhase + 0.5) % 360;
+  pupilDilation = 0.5 + sin(t * 0.7) * 0.4 + noise(t * 0.3) * 0.3;
+  
+  translate(width / 2, height / 2);
+  
+  let floatY = sin(t * 0.6) * 6;
+  translate(0, floatY);
+  
+  // Chromatic aberration offset
+  let aberr = sin(t * 2) * 3;
+  
+  // Red layer
+  push();
+  translate(aberr, 0);
+  tint(0, 80, 100, 0.4);
+  drawHead(120, 80, 90, 0.3);
+  pop();
+  
+  // Blue layer
+  push();
+  translate(-aberr, 0);
+  tint(240, 80, 100, 0.4);
+  drawHead(220, 70, 90, 0.3);
+  pop();
+  
+  // Main green head
+  drawHead(colorPhase * 0.05 % 60 + 100, 100, 90, 1.0);
+  drawAcidEyes(pupilDilation);
+}
+
+function drawHead(hue, sat, bri, alpha) {
+  push();
+  noStroke();
+  // Outline
+  fill(0, 0, 0, alpha);
+  ellipse(0, 0, 88, 105);
+  // Fill
+  fill(hue, sat, bri, alpha);
+  ellipse(0, 0, 80, 96);
+  pop();
+}
+
+function drawAcidEyes(dilation) {
+  push();
+  noStroke();
+  
+  // Eye whites (the almond shapes)
+  for (let side of [-1, 1]) {
+    push();
+    translate(side * 15, -4);
+    rotate(side * 0.35);
+    
+    // Eye backing
+    fill(0, 0, 0);
+    ellipse(0, 0, 28, 18);
+    
+    // Iris — color cycling
+    let irisHue = (colorPhase + side * 40) % 360;
+    fill(irisHue, 100, 100);
+    ellipse(0, 0, 28 * dilation * 0.8, 18 * dilation * 0.8);
+    
+    // Pupil — dilating
+    fill(0, 0, 0);
+    ellipse(0, 0, 12 * dilation, 12 * dilation);
+    
+    // Pupil specular
+    fill(0, 0, 100, 0.7);
+    ellipse(-3 * dilation, -3 * dilation, 3 * dilation, 3 * dilation);
+    
+    pop();
+  }
+  
+  // Mouth — wavy
+  stroke(0, 0, 0);
+  strokeWeight(3);
+  noFill();
+  beginShape();
+  for (let x = -12; x <= 12; x += 2) {
+    let y = 18 + sin(x * 0.4 + t * 3) * 3;
+    curveVertex(x, y);
+  }
+  endShape();
+  
+  pop();
+}
+
+
+### ===== FILE: sketches/p5js/alien_ufo.js =====
+
+// alien_ufo.js
+// Classic scene: saucer hovers, beam of light, alien descends.
+// Looping animation with idle hover mode.
+
+let t = 0;
+let alienY = -200;
+let beamOpacity = 0;
+let phase = 'hovering'; // hovering | descending | arrived | ascending
+
+function setup() {
+  createCanvas(500, 500);
+}
+
+function draw() {
+  background(0, 0, 20); // near-black blue
+  t += 0.02;
+  
+  // Stars
+  drawStars();
+  
+  // Ground
+  fill(20, 40, 20);
+  noStroke();
+  rect(0, 420, width, 80);
+  
+  // UFO hover position
+  let ufoY = 100 + sin(t * 0.8) * 8;
+  
+  // Update phase
+  updatePhase();
+  
+  // Beam
+  drawBeam(width / 2, ufoY + 20, beamOpacity);
+  
+  // Alien
+  push();
+  translate(width / 2, ufoY + 100 + alienY);
+  let alienScale = 0.7;
+  scale(alienScale);
+  drawAlienMini();
+  pop();
+  
+  // UFO on top
+  push();
+  translate(width / 2, ufoY);
+  drawUFO();
+  pop();
+}
+
+function updatePhase() {
+  if (phase === 'hovering') {
+    beamOpacity = lerp(beamOpacity, 200, 0.05);
+    if (beamOpacity > 190 && frameCount % 200 === 0) phase = 'descending';
+  } else if (phase === 'descending') {
+    alienY = lerp(alienY, 80, 0.04);
+    if (alienY > 78) phase = 'arrived';
+  } else if (phase === 'arrived') {
+    if (frameCount % 180 === 0) phase = 'ascending';
+  } else if (phase === 'ascending') {
+    alienY = lerp(alienY, -200, 0.05);
+    beamOpacity = lerp(beamOpacity, 0, 0.08);
+    if (alienY < -180) { phase = 'hovering'; alienY = -200; }
+  }
+}
+
+function drawBeam(x, y, opacity) {
+  if (opacity < 5) return;
+  noStroke();
+  for (let i = 0; i < 8; i++) {
+    let w = map(i, 0, 8, 10, 90);
+    let alpha = map(i, 0, 8, opacity, 0);
+    fill(180, 255, 180, alpha * 0.4);
+    beginShape();
+    vertex(x - w * 0.4, y);
+    vertex(x + w * 0.4, y);
+    vertex(x + w, 430);
+    vertex(x - w, 430);
+    endShape(CLOSE);
+  }
+}
+
+function drawUFO() {
+  // Saucer body
+  fill(0);
+  noStroke();
+  ellipse(0, 0, 180, 36);
+  fill(140);
+  ellipse(0, 0, 170, 30);
+  
+  // Dome
+  fill(0);
+  ellipse(0, -12, 80, 50);
+  fill(100, 200, 100, 180);
+  ellipse(0, -14, 70, 42);
+  
+  // Lights
+  for (let i = 0; i < 8; i++) {
+    let lx = map(i, 0, 7, -70, 70);
+    let pulse = sin(t * 4 + i * 0.8) > 0;
+    fill(pulse ? '#39FF14' : '#003300');
+    ellipse(lx, 8, 10, 8);
+  }
+}
+
+function drawAlienMini() {
+  // Head
+  fill(0); ellipse(0, 0, 55, 65);
+  fill('#39FF14'); ellipse(0, 0, 48, 58);
+  // Eyes
+  for (let s of [-1, 1]) {
+    push(); translate(s * 10, -3); rotate(s * 0.35);
+    fill(0); ellipse(0, 0, 18, 12);
+    pop();
+  }
+  // Mouth
+  stroke(0); strokeWeight(2); noFill();
+  arc(2, 10, 14, 7, 0.1, PI - 0.1);
+}
+
+function drawStars() {
+  noStroke();
+  randomSeed(42);
+  for (let i = 0; i < 80; i++) {
+    let sx = random(width);
+    let sy = random(height * 0.85);
+    let brightness = 150 + sin(t * 2 + i) * 60;
+    fill(brightness);
+    ellipse(sx, sy, random(1, 3));
+  }
+}
+
+
+### ===== FILE: sketches/p5js/alien_pixel.js =====
+
+// alien_pixel.js
+// Little green man in pixel art.
+// Space Invaders energy. 8-bit glory.
+
+const PIXEL = 12;
+const GREEN = '#39FF14';
+const BLACK = '#000000';
+const BG = '#0a0a0a';
+
+// Alien head pixel grid (1 = green, 2 = black/outline, 0 = empty)
+// 11x13 grid
+const HEAD_SPRITE = [
+  [0,0,0,2,2,2,2,2,0,0,0],
+  [0,0,2,1,1,1,1,1,2,0,0],
+  [0,2,1,1,1,1,1,1,1,2,0],
+  [2,1,1,1,1,1,1,1,1,1,2],
+  [2,1,1,2,2,1,1,2,2,1,2],
+  [2,1,1,2,2,1,1,2,2,1,2],
+  [2,1,1,2,2,1,1,2,2,1,2],
+  [2,1,1,1,1,1,1,1,1,1,2],
+  [2,1,1,1,2,1,1,2,1,1,2],
+  [0,2,1,1,1,1,1,1,1,2,0],
+  [0,0,2,1,2,2,2,2,1,2,0],
+  [0,0,0,2,2,2,2,2,2,0,0],
+  [0,0,0,0,2,2,2,0,0,0,0],
+];
+
+let frame = 0;
+let flashTimer = 0;
+
+function setup() {
+  createCanvas(400, 400);
+  noSmooth();
+  frameRate(8); // pixel art framerate
+}
+
+function draw() {
+  background(BG);
+  frame++;
+  
+  // Center the sprite
+  let spriteW = HEAD_SPRITE[0].length * PIXEL;
+  let spriteH = HEAD_SPRITE.length * PIXEL;
+  let ox = (width - spriteW) / 2;
+  let oy = (height - spriteH) / 2 - 20;
+  
+  // Draw pixel sprite
+  for (let row = 0; row < HEAD_SPRITE.length; row++) {
+    for (let col = 0; col < HEAD_SPRITE[row].length; col++) {
+      let val = HEAD_SPRITE[row][col];
+      if (val === 0) continue;
+      
+      let x = ox + col * PIXEL;
+      let y = oy + row * PIXEL;
+      
+      if (val === 2) {
+        fill(BLACK);
+      } else if (val === 1) {
+        // Scanline effect
+        if (row % 2 === 0 && frame % 4 < 2) {
+          fill(lerpColor(color(GREEN), color('#ffffff'), 0.15));
+        } else {
+          fill(GREEN);
+        }
+      }
+      
+      noStroke();
+      rect(x, y, PIXEL, PIXEL);
+    }
+  }
+  
+  // Pixel "abduction beam" below head occasionally
+  if (frame % 30 < 8) {
+    fill(GREEN + '44');
+    noStroke();
+    rect(width/2 - 20, oy + spriteH, 40, 80);
+  }
+  
+  // Score / arcade aesthetic
+  fill(GREEN);
+  textSize(10);
+  textFont('monospace');
+  textAlign(CENTER);
+  text('< LITTLE GREEN MAN >', width / 2, height - 30);
+  text('INSERT COIN', width / 2, height - 15);
+}
+
+
+### ===== FILE: sketches/canvas/alien_base.js =====
+
+// alien_base.js
+// The canonical little green man head.
+// Pure vanilla canvas. The base reference implementation.
+// Import into any HTML page — call drawAlienHead(ctx, x, y, size)
+
+/**
+ * Draw the canonical alien head centered at (x, y) with given size.
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {number} x - center x
+ * @param {number} y - center y  
+ * @param {number} size - head height in px (default: 100)
+ * @param {object} opts - optional overrides
+ *   opts.green: fill color (default '#39FF14')
+ *   opts.outline: outline color (default '#000000')
+ *   opts.outlineThickness: (default size * 0.05)
+ *   opts.glowAmount: 0-1 (default 0 = no glow)
+ */
+function drawAlienHead(ctx, x, y, size = 100, opts = {}) {
+  const green = opts.green || '#39FF14';
+  const outline = opts.outline || '#000000';
+  const thickness = opts.outlineThickness || size * 0.05;
+  const glow = opts.glowAmount || 0;
+  
+  const hw = size * 0.5;   // half width
+  const hh = size * 0.6;   // half height
+  
+  ctx.save();
+  ctx.translate(x, y);
+  
+  // Glow effect
+  if (glow > 0) {
+    ctx.shadowColor = green;
+    ctx.shadowBlur = size * glow * 0.4;
+  }
+  
+  // Outline (slightly larger ellipse in black)
+  ctx.beginPath();
+  ctx.ellipse(0, 0, hw + thickness, hh + thickness, 0, 0, Math.PI * 2);
+  ctx.fillStyle = outline;
+  ctx.fill();
+  
+  // Green head
+  ctx.beginPath();
+  ctx.ellipse(0, 0, hw, hh, 0, 0, Math.PI * 2);
+  ctx.fillStyle = green;
+  ctx.fill();
+  
+  ctx.shadowBlur = 0;
+  
+  // Left eye
+  ctx.save();
+  ctx.translate(-hw * 0.3, -hh * 0.08);
+  ctx.rotate(-0.35);
+  ctx.beginPath();
+  ctx.ellipse(0, 0, hw * 0.28, hh * 0.17, 0, 0, Math.PI * 2);
+  ctx.fillStyle = outline;
+  ctx.fill();
+  ctx.restore();
+  
+  // Right eye
+  ctx.save();
+  ctx.translate(hw * 0.3, -hh * 0.08);
+  ctx.rotate(0.35);
+  ctx.beginPath();
+  ctx.ellipse(0, 0, hw * 0.28, hh * 0.17, 0, 0, Math.PI * 2);
+  ctx.fillStyle = outline;
+  ctx.fill();
+  ctx.restore();
+  
+  // Mouth
+  ctx.beginPath();
+  ctx.arc(hw * 0.05, hh * 0.28, hw * 0.13, 0.2, Math.PI - 0.2);
+  ctx.strokeStyle = outline;
+  ctx.lineWidth = thickness * 0.8;
+  ctx.stroke();
+  
+  ctx.restore();
+}
+
+// Export for module use
+if (typeof module !== 'undefined') module.exports = { drawAlienHead };
+
+
+### ===== FILE: shaders/alien_head.frag =====
+
+// alien_head.frag
+// Little green man head in GLSL.
+// SDF-based, with CRT glow and scanlines.
+// Uniform: iTime, iResolution
+
+precision mediump float;
+
+uniform float iTime;
+uniform vec2 iResolution;
+
+#define GREEN vec3(0.224, 1.0, 0.078)  // #39FF14
+#define BLACK vec3(0.0)
+
+// Signed distance — ellipse centered at origin
+float sdEllipse(vec2 p, vec2 ab) {
+  p = abs(p);
+  if (p.x > p.y) { p = p.yx; ab = ab.yx; }
+  float l = ab.y * ab.y - ab.x * ab.x;
+  float m = ab.x * p.x / l;
+  float n = ab.y * p.y / l;
+  float m2 = m * m, n2 = n * n;
+  float c = (m2 + n2 - 1.0) / 3.0;
+  float c3 = c * c * c;
+  float q = c3 + m2 * n2 * 2.0;
+  float d = c3 + m2 * n2;
+  float g = m + m * n2;
+  float co;
+  if (d < 0.0) {
+    float h = acos(q / c3) / 3.0;
+    float s = cos(h);
+    float t = sin(h) * sqrt(3.0);
+    float rx = sqrt(-c * (s + t + 2.0) + m2);
+    float ry = sqrt(-c * (s - t + 2.0) + m2);
+    co = (ry + sign(l) * rx + abs(g) / (rx * ry) - m) / 2.0;
+  } else {
+    float h = 2.0 * m * n * sqrt(d);
+    float s = sign(q + h) * pow(abs(q + h), 1.0/3.0);
+    float t = sign(q - h) * pow(abs(q - h), 1.0/3.0);
+    float rx = -(s + t) - c * 4.0 + 2.0 * m2;
+    float ry = (s - t) * sqrt(3.0);
+    float rm = sqrt(rx * rx + ry * ry);
+    co = (ry / sqrt(rm - rx) + 2.0 * g / rm - m) / 2.0;
+  }
+  vec2 r = ab * vec2(co, sqrt(1.0 - co * co));
+  return length(r - p) * sign(p.y - r.y);
+}
+
+// Rotate 2D
+vec2 rot2(vec2 p, float a) {
+  return vec2(p.x * cos(a) - p.y * sin(a), p.x * sin(a) + p.y * cos(a));
+}
+
+void main() {
+  vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+  
+  float t = iTime;
+  float breathe = sin(t * 1.2) * 0.015;
+  
+  // HEAD
+  float head = sdEllipse(uv, vec2(0.28 + breathe, 0.36 + breathe));
+  float headOutline = sdEllipse(uv, vec2(0.30 + breathe, 0.38 + breathe));
+  
+  // LEFT EYE
+  vec2 leftEyePos = vec2(-0.09, 0.04);
+  vec2 leUV = rot2(uv - leftEyePos, -0.35);
+  float leftEye = sdEllipse(leUV, vec2(0.075, 0.048));
+  
+  // RIGHT EYE
+  vec2 rightEyePos = vec2(0.09, 0.04);
+  vec2 reUV = rot2(uv - rightEyePos, 0.35);
+  float rightEye = sdEllipse(reUV, vec2(0.075, 0.048));
+  
+  // MOUTH
+  vec2 mouthCenter = vec2(0.012, -0.14);
+  float mouthDist = length(uv - mouthCenter) - 0.06;
+  float mouthAngle = atan(uv.y - mouthCenter.y, uv.x - mouthCenter.x);
+  float mouth = abs(mouthDist) - 0.008;
+  float mouthMask = step(0.15, mouthAngle) * step(mouthAngle, 3.0);
+  
+  // Compose
+  vec3 col = BLACK;
+  
+  // Outline
+  col = mix(col, BLACK, smoothstep(0.005, -0.005, headOutline));
+  // Green head
+  col = mix(col, GREEN, smoothstep(0.005, -0.005, head));
+  // Eyes (cut out)
+  col = mix(col, BLACK, smoothstep(0.004, -0.004, leftEye));
+  col = mix(col, BLACK, smoothstep(0.004, -0.004, rightEye));
+  // Mouth
+  col = mix(col, BLACK, (1.0 - smoothstep(0.0, 0.006, mouth)) * mouthMask);
+  
+  // Glow
+  float glowDist = max(0.0, -head);
+  float glow = exp(-glowDist * 12.0) * 0.4;
+  col += GREEN * glow * (0.5 + 0.5 * sin(t * 2.0));
+  
+  // Scanlines
+  float scanline = sin(gl_FragCoord.y * 3.14159 * 2.0) * 0.5 + 0.5;
+  col *= 0.92 + scanline * 0.08;
+  
+  // Vignette
+  float vig = 1.0 - length(uv) * 0.8;
+  col *= clamp(vig, 0.0, 1.0);
+  
+  gl_FragColor = vec4(col, 1.0);
+}
+
+
+### ===== FILE: shaders/alien_psychedelic.frag =====
+
+// alien_psychedelic.frag
+// The alien head, but domain warped, color cycling, fractal background.
+// He's fine. He's just vibing.
+
+precision mediump float;
+uniform float iTime;
+uniform vec2 iResolution;
+
+#define TAU 6.28318530718
+
+vec2 rot2(vec2 p, float a) {
+  return vec2(p.x*cos(a)-p.y*sin(a), p.x*sin(a)+p.y*cos(a));
+}
+
+float sdEllipseSimple(vec2 p, vec2 r) {
+  return (length(p / r) - 1.0) * min(r.x, r.y);
+}
+
+// Simple 2D fbm for background
+float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+float noise(vec2 p) {
+  vec2 i = floor(p), f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(hash(i), hash(i+vec2(1,0)), f.x),
+             mix(hash(i+vec2(0,1)), hash(i+vec2(1,1)), f.x), f.y);
+}
+
+float fbm(vec2 p) {
+  float v = 0.0, a = 0.5;
+  for (int i = 0; i < 5; i++) { v += a * noise(p); p *= 2.0; a *= 0.5; }
+  return v;
+}
+
+vec3 hsv(float h, float s, float v) {
+  vec3 c = abs(mod(h*6.0+vec3(0,4,2),6.0)-3.0)-1.0;
+  return v * mix(vec3(1), clamp(c, 0.0, 1.0), s);
+}
+
+void main() {
+  vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+  float t = iTime;
+  
+  // Domain warp UV for background
+  vec2 wuv = uv;
+  wuv += vec2(fbm(uv + t * 0.15), fbm(uv + vec2(3.4, 1.7) + t * 0.12)) * 0.3;
+  
+  // Background — color cycling fbm
+  float bg = fbm(wuv * 2.5 + t * 0.1);
+  vec3 col = hsv(bg + t * 0.08, 0.9, 0.6);
+  
+  // Warp the UV for the alien head too (mild)
+  vec2 alienUV = uv;
+  alienUV += vec2(sin(uv.y * 8.0 + t) * 0.012, cos(uv.x * 8.0 + t) * 0.012);
+  
+  // Head
+  float head = sdEllipseSimple(alienUV, vec2(0.27, 0.35));
+  float outline = sdEllipseSimple(alienUV, vec2(0.29, 0.37));
+  
+  // Eyes
+  vec2 le = rot2(alienUV - vec2(-0.09, 0.04), -0.35);
+  vec2 re = rot2(alienUV - vec2(0.09, 0.04), 0.35);
+  float leye = sdEllipseSimple(le, vec2(0.072, 0.046));
+  float reye = sdEllipseSimple(re, vec2(0.072, 0.046));
+  
+  // Color cycle the green
+  vec3 alienGreen = hsv(0.33 + sin(t * 0.5) * 0.08, 1.0, 1.0);
+  
+  col = mix(col, vec3(0), smoothstep(0.008, -0.008, outline));
+  col = mix(col, alienGreen, smoothstep(0.008, -0.008, head));
+  col = mix(col, vec3(0), smoothstep(0.005, -0.005, leye));
+  col = mix(col, vec3(0), smoothstep(0.005, -0.005, reye));
+  
+  // Pupils — psychedelic color
+  vec2 lp = le;
+  vec2 rp = re;
+  float lpupil = sdEllipseSimple(lp, vec2(0.032, 0.032));
+  float rpupil = sdEllipseSimple(rp, vec2(0.032, 0.032));
+  vec3 pupilCol = hsv(t * 0.3, 1.0, 1.0);
+  col = mix(col, pupilCol, smoothstep(0.004, -0.004, lpupil));
+  col = mix(col, pupilCol, smoothstep(0.004, -0.004, rpupil));
+  
+  // Glow
+  float glow = exp(max(0.0, -head) * -15.0) * 0.5;
+  col += alienGreen * glow;
+  
+  gl_FragColor = vec4(col, 1.0);
+}
+
+
+### ===== FILE: shaders/alien_scanlines.frag =====
+
+// alien_scanlines.frag
+// VHS scanlines, RGB split, glitch artifacts.
+// Alien on a dying television.
+
+precision mediump float;
+uniform float iTime;
+uniform vec2 iResolution;
+uniform sampler2D iChannel0; // optional: provide alien head as texture
+
+float sdEllipseSimple(vec2 p, vec2 r) {
+  return (length(p / r) - 1.0) * min(r.x, r.y);
+}
+
+vec2 rot2(vec2 p, float a) {
+  return vec2(p.x*cos(a)-p.y*sin(a), p.x*sin(a)+p.y*cos(a));
+}
+
+float hash(float n) { return fract(sin(n) * 43758.5453); }
+
+void main() {
+  vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+  float t = iTime;
+  
+  // Glitch: occasional horizontal shift
+  float glitchLine = floor(uv.y * 40.0);
+  float glitchTime = floor(t * 8.0);
+  float glitch = hash(glitchLine + glitchTime * 100.0);
+  float glitchAmt = step(0.97, glitch) * hash(glitchTime) * 0.04;
+  uv.x += glitchAmt * sign(sin(glitchLine));
+  
+  // RGB split
+  float aberr = 0.008 + sin(t * 0.7) * 0.003;
+  
+  vec2 uvR = uv + vec2(aberr, 0.0);
+  vec2 uvG = uv;
+  vec2 uvB = uv - vec2(aberr, 0.0);
+  
+  // Alien SDF at each channel offset
+  float headR = sdEllipseSimple(uvR, vec2(0.27, 0.35));
+  float headG = sdEllipseSimple(uvG, vec2(0.27, 0.35));
+  float headB = sdEllipseSimple(uvB, vec2(0.27, 0.35));
+  
+  float outlineG = sdEllipseSimple(uvG, vec2(0.29, 0.37));
+  
+  // Eyes
+  vec2 le = rot2(uvG - vec2(-0.09, 0.04), -0.35);
+  vec2 re = rot2(uvG - vec2(0.09, 0.04), 0.35);
+  float leye = sdEllipseSimple(le, vec2(0.072, 0.046));
+  float reye = sdEllipseSimple(re, vec2(0.072, 0.046));
+  
+  vec3 col = vec3(0.0);
+  float GREEN_R = 0.224, GREEN_G = 1.0, GREEN_B = 0.078;
+  
+  col.r = mix(col.r, 0.0, smoothstep(0.008, -0.008, outlineG));
+  col.r = mix(col.r, GREEN_R, smoothstep(0.008, -0.008, headR));
+  
+  col.g = mix(col.g, 0.0, smoothstep(0.008, -0.008, outlineG));
+  col.g = mix(col.g, GREEN_G, smoothstep(0.008, -0.008, headG));
+  
+  col.b = mix(col.b, 0.0, smoothstep(0.008, -0.008, outlineG));
+  col.b = mix(col.b, GREEN_B, smoothstep(0.008, -0.008, headB));
+  
+  // Eyes (no split)
+  col = mix(col, vec3(0.0), smoothstep(0.005, -0.005, leye));
+  col = mix(col, vec3(0.0), smoothstep(0.005, -0.005, reye));
+  
+  // Scanlines
+  float scan = sin(gl_FragCoord.y * 3.14159) * 0.5 + 0.5;
+  col *= 0.85 + scan * 0.15;
+  
+  // Occasional bright scanline flash
+  float flashLine = step(0.995, hash(floor(uv.y * 60.0) + floor(t * 12.0)));
+  col += flashLine * vec3(0.224, 1.0, 0.078) * 0.3;
+  
+  // Noise
+  float noise = hash(dot(gl_FragCoord.xy, vec2(12.9898, 78.233)) + t * 100.0);
+  col += (noise - 0.5) * 0.04;
+  
+  // Vignette
+  col *= 1.0 - length(uv) * 0.7;
+  
+  gl_FragColor = vec4(col, 1.0);
+}
+
+
+### ===== FILE: assets/svg/alien_head.svg =====
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -75 120 145" width="120" height="145">
+  <!-- Little Green Man — canonical head SVG -->
+  <!-- Outline (black, slightly larger) -->
+  <ellipse cx="0" cy="-5" rx="52" ry="65" fill="#000000"/>
+  <!-- Green head -->
+  <ellipse cx="0" cy="-5" rx="46" ry="58" fill="#39FF14"/>
+  <!-- Left eye -->
+  <ellipse cx="-14" cy="-9" rx="13" ry="8.5" fill="#000000"
+    transform="rotate(-20, -14, -9)"/>
+  <!-- Right eye -->
+  <ellipse cx="14" cy="-9" rx="13" ry="8.5" fill="#000000"
+    transform="rotate(20, 14, -9)"/>
+  <!-- Mouth -->
+  <path d="M -10 16 Q 3 22 12 16" stroke="#000000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>
+
+
+### ===== FILE: assets/svg/alien_full.svg =====
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-70 -80 140 220" width="140" height="220">
+  <!-- Little Green Man — full body SVG -->
+  
+  <!-- Body outline -->
+  <ellipse cx="0" cy="80" rx="22" ry="30" fill="#000000"/>
+  <!-- Body fill -->
+  <ellipse cx="0" cy="80" rx="17" ry="25" fill="#39FF14"/>
+  
+  <!-- Left arm outline -->
+  <ellipse cx="-30" cy="62" rx="15" ry="6" fill="#000000" transform="rotate(-20, -30, 62)"/>
+  <ellipse cx="-30" cy="62" rx="12" ry="4.5" fill="#39FF14" transform="rotate(-20, -30, 62)"/>
+  <!-- Left hand -->
+  <circle cx="-42" cy="57" r="7" fill="#000000"/>
+  <circle cx="-42" cy="57" r="5" fill="#39FF14"/>
+  
+  <!-- Right arm outline -->
+  <ellipse cx="30" cy="62" rx="15" ry="6" fill="#000000" transform="rotate(20, 30, 62)"/>
+  <ellipse cx="30" cy="62" rx="12" ry="4.5" fill="#39FF14" transform="rotate(20, 30, 62)"/>
+  <!-- Right hand -->
+  <circle cx="42" cy="57" r="7" fill="#000000"/>
+  <circle cx="42" cy="57" r="5" fill="#39FF14"/>
+  
+  <!-- Left leg outline -->
+  <rect x="-17" y="103" width="13" height="34" rx="4" fill="#000000"/>
+  <rect x="-15" y="104" width="10" height="30" rx="3" fill="#39FF14"/>
+  
+  <!-- Right leg outline -->
+  <rect x="5" y="103" width="13" height="34" rx="4" fill="#000000"/>
+  <rect x="7" y="104" width="10" height="30" rx="3" fill="#39FF14"/>
+  
+  <!-- Head outline -->
+  <ellipse cx="0" cy="-5" rx="52" ry="65" fill="#000000"/>
+  <!-- Green head -->
+  <ellipse cx="0" cy="-5" rx="46" ry="58" fill="#39FF14"/>
+  <!-- Left eye -->
+  <ellipse cx="-14" cy="-9" rx="13" ry="8.5" fill="#000000"
+    transform="rotate(-20, -14, -9)"/>
+  <!-- Right eye -->
+  <ellipse cx="14" cy="-9" rx="13" ry="8.5" fill="#000000"
+    transform="rotate(20, 14, -9)"/>
+  <!-- Mouth -->
+  <path d="M -10 16 Q 3 22 12 16" stroke="#000000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>
+
+
+### ===== FILE: gallery/index.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👽 little green men — gallery</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Share+Tech+Mono&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: #000;
+      color: #39FF14;
+      font-family: 'Chakra Petch', monospace;
+      min-height: 100vh;
+    }
+    
+    header {
+      padding: 2rem;
+      border-bottom: 2px solid #39FF14;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+    }
+    
+    .subtitle {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: #39FF1488;
+      margin-top: 0.3rem;
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+      padding: 2px;
+    }
+    
+    .sketch-card {
+      background: #0a0a0a;
+      border: 1px solid #39FF1433;
+      aspect-ratio: 1;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    
+    .sketch-card:hover {
+      border-color: #39FF14;
+    }
+    
+    .sketch-card iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+    
+    .sketch-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.5rem 0.75rem;
+      background: linear-gradient(transparent, #000000cc);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: #39FF14;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+      border: 1px solid #39FF1466;
+      font-size: 0.6rem;
+      margin-right: 0.3rem;
+      color: #39FF1488;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="../assets/svg/alien_head.svg" width="48" height="60" alt="alien">
+    <div>
+      <h1>👽 Little Green Men</h1>
+      <div class="subtitle">// a creative coding gallery — the alien as art trope</div>
+    </div>
+  </header>
+  
+  <div class="gallery" id="gallery">
+    <!-- Cards injected by JS -->
+  </div>
+  
+  <script>
+    const sketches = [
+      { id: 'dancer', label: 'alien_dancer', tags: ['p5js', 'animation', 'dance'], file: '../sketches/p5js/alien_dancer_standalone.html' },
+      { id: 'acid', label: 'alien_acid', tags: ['p5js', 'psychedelic', 'eyes'], file: '../sketches/p5js/alien_acid_standalone.html' },
+      { id: 'ufo', label: 'alien_ufo', tags: ['p5js', 'scene', 'classic'], file: '../sketches/p5js/alien_ufo_standalone.html' },
+      { id: 'pixel', label: 'alien_pixel', tags: ['p5js', 'pixel', '8bit'], file: '../sketches/p5js/alien_pixel_standalone.html' },
+      { id: 'shader_head', label: 'alien_head.frag', tags: ['glsl', 'sdf', 'glow'], file: '../shaders/alien_head_demo.html' },
+      { id: 'shader_psychedelic', label: 'alien_psychedelic.frag', tags: ['glsl', 'domain-warp', 'color'], file: '../shaders/alien_psychedelic_demo.html' },
+      { id: 'shader_scanlines', label: 'alien_scanlines.frag', tags: ['glsl', 'vhs', 'glitch'], file: '../shaders/alien_scanlines_demo.html' },
+    ];
+    
+    const gallery = document.getElementById('gallery');
+    sketches.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'sketch-card';
+      card.innerHTML = `
+        <iframe src="${s.file}" title="${s.label}" loading="lazy"></iframe>
+        <div class="sketch-label">
+          ${s.label}<br>
+          ${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+      `;
+      card.addEventListener('click', () => window.open(s.file, '_blank'));
+      gallery.appendChild(card);
+    });
+  </script>
+</body>
+</html>
+
+
+### ===== FILE: index.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👽 little_green_men</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Share+Tech+Mono&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: #000;
+      color: #39FF14;
+      font-family: 'Chakra Petch', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .alien-icon {
+      animation: float 3s ease-in-out infinite;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 20px #39FF14);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px #39FF14;
+    }
+    
+    .tagline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      color: #39FF1488;
+      margin-bottom: 3rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .nav a {
+      color: #39FF14;
+      text-decoration: none;
+      border: 1px solid #39FF14;
+      padding: 0.6rem 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    
+    .nav a:hover {
+      background: #39FF14;
+      color: #000;
+    }
+    
+    .footer {
+      position: fixed;
+      bottom: 1rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: #39FF1444;
+    }
+  </style>
+</head>
+<body>
+  <img class="alien-icon" src="assets/svg/alien_head.svg" width="80" height="100" alt="alien">
+  <h1>little_green_men</h1>
+  <p class="tagline">// the alien as art trope. creative coding laboratory.</p>
+  
+  <nav class="nav">
+    <a href="gallery/index.html">gallery</a>
+    <a href="docs/TROPE.md">trope docs</a>
+    <a href="docs/VISUAL_LANGUAGE.md">visual spec</a>
+    <a href="docs/REMIX_CATALOG.md">remix catalog</a>
+    <a href="https://github.com/merrypranxter/little_green_men" target="_blank">github</a>
+  </nav>
+  
+  <div class="footer">part of the merrypranxter generative art ecosystem</div>
+</body>
+</html>
+
+
+### ===== FILE: .gitignore =====
+
+# Node
+node_modules/
+npm-debug.log*
+.npm
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build output
+dist/
+build/
+out/
+
+# Env
+.env
+.env.local
+
+# Misc
+*.log
+*.tmp
+
+
+### ===== FILE: LICENSE =====
+
+MIT License
+
+Copyright (c) 2026 merrypranxter
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+### ===== FILE: .github/workflows/deploy-pages.yml =====
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+
+---
+
+## Configuration Notes
+- No build step required — pure static files
+- Deploy to GitHub Pages via the included workflow
+- p5.js loaded from CDN in standalone sketch files (not included in repo_seed, add as you build)
+- GLSL shaders need a WebGL wrapper to run — the `alien_head_demo.html` etc. files are standalone wrappers (add as you build each shader)
+
+## Next Steps
+1. `git clone https://github.com/merrypranxter/little_green_men.git`
+2. Copy all files from this seed into the repo
+3. `git add . && git commit -m "Initial scaffold: little green men repo"`
+4. `git push origin main`
+5. Enable GitHub Pages in repo settings → Pages → Source: GitHub Actions
+6. Start building: open `sketches/p5js/alien_dancer.js` and make him DANCE
