@@ -1,0 +1,96 @@
+/*
+ * alien-tokens.css
+ * Shared design tokens for the little_green_men repo.
+ * Import this in every HTML file: <link rel="stylesheet" href="../styles/alien-tokens.css">
+ * (adjust relative path as needed)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  /* ── Color Palette ─────────────────────────────────────── */
+  --alien-green:      #39FF14;   /* THE green. canonical. non-negotiable. */
+  --alien-green-dim:  #1a7a08;   /* dimmed green for subtle elements */
+  --alien-green-glow: #39FF1440; /* glow / shadow color */
+  --alien-black:      #000000;   /* background always */
+  --alien-near-black: #0a0a0a;   /* card backgrounds */
+  --alien-cyan:       #00FFFF;   /* accent */
+  --alien-magenta:    #FF00FF;   /* accent */
+  --alien-gold:       #FFD700;   /* accent */
+  --alien-pink:       #FF69B4;   /* accent */
+  --alien-white:      #FFFFFF;   /* text on dark only */
+
+  /* ── Typography ────────────────────────────────────────── */
+  --font-display: 'Chakra Petch', monospace;
+  --font-mono:    'Share Tech Mono', monospace;
+
+  /* ── Spacing ───────────────────────────────────────────── */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+
+  /* ── Border ────────────────────────────────────────────── */
+  --border-color: var(--alien-green);
+  --border-dim:   var(--alien-green-dim);
+  --border-width: 1px;
+  /* border-radius is ALWAYS 0. no exceptions. */
+
+  /* ── Glow effects ──────────────────────────────────────── */
+  --glow-text:   0 0 10px var(--alien-green), 0 0 20px var(--alien-green-glow);
+  --glow-box:    0 0 8px var(--alien-green), 0 0 20px var(--alien-green-glow);
+  --glow-strong: 0 0 20px var(--alien-green), 0 0 40px var(--alien-green-glow);
+}
+
+/* ── Base reset ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* enforced globally */
+}
+
+html, body {
+  background: var(--alien-black);
+  color: var(--alien-green);
+  font-family: var(--font-display);
+  min-height: 100vh;
+}
+
+/* ── Utility classes ─────────────────────────────────────── */
+.glow-text  { text-shadow: var(--glow-text); }
+.glow-box   { box-shadow: var(--glow-box); }
+.glow-strong { text-shadow: var(--glow-strong); }
+
+.font-mono  { font-family: var(--font-mono); }
+.font-display { font-family: var(--font-display); }
+
+.text-dim   { color: var(--alien-green-dim); }
+.text-cyan  { color: var(--alien-cyan); }
+.text-magenta { color: var(--alien-magenta); }
+.text-gold  { color: var(--alien-gold); }
+
+.border-alien {
+  border: var(--border-width) solid var(--border-color);
+}
+
+.border-dim {
+  border: var(--border-width) solid var(--border-dim);
+}
+
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+}

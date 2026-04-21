@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -75 120 145" width="120" height="145">
+  <!-- Little Green Man — canonical head SVG -->
+  <!-- Outline (black, slightly larger) -->
+  <ellipse cx="0" cy="-5" rx="52" ry="65" fill="#000000"/>
+  <!-- Green head -->
+  <ellipse cx="0" cy="-5" rx="46" ry="58" fill="#39FF14"/>
+  <!-- Left eye -->
+  <ellipse cx="-14" cy="-9" rx="13" ry="8.5" fill="#000000"
+    transform="rotate(-20, -14, -9)"/>
+  <!-- Right eye -->
+  <ellipse cx="14" cy="-9" rx="13" ry="8.5" fill="#000000"
+    transform="rotate(20, 14, -9)"/>
+  <!-- Mouth -->
+  <path d="M -10 16 Q 3 22 12 16" stroke="#000000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>

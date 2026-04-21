@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_head shader</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    canvas { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const VERT_SOURCE = `attribute vec2 a_position; void main() { gl_Position = vec4(a_position, 0.0, 1.0); }`;
+
+// alien_head.frag inlined:
+const FRAG_SOURCE = `
+precision mediump float;
+uniform float iTime;
+uniform vec2 iResolution;
+#define GREEN vec3(0.224, 1.0, 0.078)
+#define BLACK vec3(0.0)
+float sdEllipse(vec2 p, vec2 ab) {
+  p = abs(p); if (p.x > p.y) { p = p.yx; ab = ab.yx; }
+  float l = ab.y*ab.y - ab.x*ab.x;
+  float m = ab.x*p.x/l, n = ab.y*p.y/l;
+  float m2=m*m, n2=n*n;
+  float c = (m2+n2-1.0)/3.0, c3=c*c*c;
+  float q=c3+m2*n2*2.0, d=c3+m2*n2, g=m+m*n2;
+  float co;
+  if(d<0.0){float h=acos(q/c3)/3.0;float s=cos(h);float t2=sin(h)*sqrt(3.0);float rx=sqrt(-c*(s+t2+2.0)+m2);float ry=sqrt(-c*(s-t2+2.0)+m2);co=(ry+sign(l)*rx+abs(g)/(rx*ry)-m)/2.0;}
+  else{float h=2.0*m*n*sqrt(d);float s=sign(q+h)*pow(abs(q+h),1.0/3.0);float t2=sign(q-h)*pow(abs(q-h),1.0/3.0);float rx=-(s+t2)-c*4.0+2.0*m2;float ry=(s-t2)*sqrt(3.0);float rm=sqrt(rx*rx+ry*ry);co=(ry/sqrt(rm-rx)+2.0*g/rm-m)/2.0;}
+  vec2 r=ab*vec2(co,sqrt(1.0-co*co)); return length(r-p)*sign(p.y-r.y);
+}
+vec2 rot2(vec2 p,float a){return vec2(p.x*cos(a)-p.y*sin(a),p.x*sin(a)+p.y*cos(a));}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*iResolution.xy)/iResolution.y;
+  float t=iTime; float breathe=sin(t*1.2)*0.015;
+  float head=sdEllipse(uv,vec2(0.28+breathe,0.36+breathe));
+  float headOutline=sdEllipse(uv,vec2(0.30+breathe,0.38+breathe));
+  vec2 leUV=rot2(uv-vec2(-0.09,0.04),-0.35); float leftEye=sdEllipse(leUV,vec2(0.075,0.048));
+  vec2 reUV=rot2(uv-vec2(0.09,0.04),0.35);   float rightEye=sdEllipse(reUV,vec2(0.075,0.048));
+  vec2 mC=vec2(0.012,-0.14); float mD=abs(length(uv-mC)-0.06)-0.008;
+  float mA=atan(uv.y-mC.y,uv.x-mC.x); float mMask=step(0.15,mA)*step(mA,3.0);
+  vec3 col=BLACK;
+  col=mix(col,BLACK,smoothstep(0.005,-0.005,headOutline));
+  col=mix(col,GREEN,smoothstep(0.005,-0.005,head));
+  col=mix(col,BLACK,smoothstep(0.004,-0.004,leftEye));
+  col=mix(col,BLACK,smoothstep(0.004,-0.004,rightEye));
+  col=mix(col,BLACK,(1.0-smoothstep(0.0,0.006,mD))*mMask);
+  float glow=exp(-max(0.0,-head)*12.0)*0.4; col+=GREEN*glow*(0.5+0.5*sin(t*2.0));
+  float scan=sin(gl_FragCoord.y*3.14159*2.0)*0.5+0.5; col*=0.92+scan*0.08;
+  col*=clamp(1.0-length(uv)*0.8,0.0,1.0);
+  gl_FragColor=vec4(col,1.0);
+}`;
+
+const canvas=document.getElementById('c');
+const gl=canvas.getContext('webgl');
+function cs(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(s));return s;}
+const prog=gl.createProgram();gl.attachShader(prog,cs(gl.VERTEX_SHADER,VERT_SOURCE));gl.attachShader(prog,cs(gl.FRAGMENT_SHADER,FRAG_SOURCE));gl.linkProgram(prog);gl.useProgram(prog);
+const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+const posLoc=gl.getAttribLocation(prog,'a_position');gl.enableVertexAttribArray(posLoc);gl.vertexAttribPointer(posLoc,2,gl.FLOAT,false,0,0);
+const tL=gl.getUniformLocation(prog,'iTime'),rL=gl.getUniformLocation(prog,'iResolution');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;gl.viewport(0,0,canvas.width,canvas.height);}
+window.addEventListener('resize',resize);resize();
+const t0=performance.now();
+(function render(){const t=(performance.now()-t0)/1000;gl.uniform1f(tL,t);gl.uniform2f(rL,canvas.width,canvas.height);gl.drawArrays(gl.TRIANGLES,0,6);requestAnimationFrame(render);})();
+</script>
+</body>
+</html>

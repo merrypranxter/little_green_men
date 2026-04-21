@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_scanlines shader</title>
+  <style>* { margin:0; padding:0; } html,body { width:100%; height:100%; background:#000; overflow:hidden; } canvas { display:block; width:100%; height:100%; }</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const VS=`attribute vec2 a_position;void main(){gl_Position=vec4(a_position,0.0,1.0);}`;
+const FS=`
+precision mediump float;
+uniform float iTime;
+uniform vec2 iResolution;
+float sdE(vec2 p,vec2 r){return(length(p/r)-1.0)*min(r.x,r.y);}
+vec2 rot2(vec2 p,float a){return vec2(p.x*cos(a)-p.y*sin(a),p.x*sin(a)+p.y*cos(a));}
+float hash(float n){return fract(sin(n)*43758.5453);}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*iResolution.xy)/iResolution.y;
+  float t=iTime;
+  float gL=floor(uv.y*40.0),gT=floor(t*8.0);
+  float gl2=hash(gL+gT*100.0);
+  float gA=step(0.97,gl2)*hash(gT)*0.04;
+  uv.x+=gA*sign(sin(gL));
+  float ab=0.008+sin(t*0.7)*0.003;
+  vec2 uvR=uv+vec2(ab,0.0),uvG=uv,uvB=uv-vec2(ab,0.0);
+  float hR=sdE(uvR,vec2(0.27,0.35)),hG=sdE(uvG,vec2(0.27,0.35)),hB=sdE(uvB,vec2(0.27,0.35));
+  float oG=sdE(uvG,vec2(0.29,0.37));
+  vec2 le=rot2(uvG-vec2(-0.09,0.04),-0.35),re=rot2(uvG-vec2(0.09,0.04),0.35);
+  float leye=sdE(le,vec2(0.072,0.046)),reye=sdE(re,vec2(0.072,0.046));
+  vec3 col=vec3(0);
+  col.r=mix(col.r,0.0,smoothstep(0.008,-0.008,oG));col.r=mix(col.r,0.224,smoothstep(0.008,-0.008,hR));
+  col.g=mix(col.g,0.0,smoothstep(0.008,-0.008,oG));col.g=mix(col.g,1.0, smoothstep(0.008,-0.008,hG));
+  col.b=mix(col.b,0.0,smoothstep(0.008,-0.008,oG));col.b=mix(col.b,0.078,smoothstep(0.008,-0.008,hB));
+  col=mix(col,vec3(0),smoothstep(0.005,-0.005,leye));col=mix(col,vec3(0),smoothstep(0.005,-0.005,reye));
+  col*=0.85+(sin(gl_FragCoord.y*3.14159)*0.5+0.5)*0.15;
+  col+=step(0.995,hash(floor(uv.y*60.0)+floor(t*12.0)))*vec3(0.224,1.0,0.078)*0.3;
+  col+=(hash(dot(gl_FragCoord.xy,vec2(12.9898,78.233))+t*100.0)-0.5)*0.04;
+  col*=1.0-length(uv)*0.7;
+  gl_FragColor=vec4(col,1.0);
+}`;
+const c=document.getElementById('c'),gl=c.getContext('webgl');
+function cs(t,s){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh;}
+const p=gl.createProgram();gl.attachShader(p,cs(gl.VERTEX_SHADER,VS));gl.attachShader(p,cs(gl.FRAGMENT_SHADER,FS));gl.linkProgram(p);gl.useProgram(p);
+const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+const pl=gl.getAttribLocation(p,'a_position');gl.enableVertexAttribArray(pl);gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+const tL=gl.getUniformLocation(p,'iTime'),rL=gl.getUniformLocation(p,'iResolution');
+function resize(){c.width=innerWidth;c.height=innerHeight;gl.viewport(0,0,c.width,c.height);}
+window.addEventListener('resize',resize);resize();
+const t0=performance.now();(function r(){const t=(performance.now()-t0)/1e3;gl.uniform1f(tL,t);gl.uniform2f(rL,c.width,c.height);gl.drawArrays(gl.TRIANGLES,0,6);requestAnimationFrame(r);})();
+</script></body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👽 little_green_men</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Share+Tech+Mono&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: #000;
+      color: #39FF14;
+      font-family: 'Chakra Petch', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .alien-icon {
+      animation: float 3s ease-in-out infinite;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 20px #39FF14);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px #39FF14;
+    }
+    
+    .tagline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      color: #39FF1488;
+      margin-bottom: 3rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .nav a {
+      color: #39FF14;
+      text-decoration: none;
+      border: 1px solid #39FF14;
+      padding: 0.6rem 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    
+    .nav a:hover {
+      background: #39FF14;
+      color: #000;
+    }
+    
+    .footer {
+      position: fixed;
+      bottom: 1rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: #39FF1444;
+    }
+  </style>
+</head>
+<body>
+  <img class="alien-icon" src="assets/svg/alien_head.svg" width="80" height="100" alt="alien">
+  <h1>little_green_men</h1>
+  <p class="tagline">// the alien as art trope. creative coding laboratory.</p>
+  
+  <nav class="nav">
+    <a href="gallery/index.html">gallery</a>
+    <a href="docs/TROPE.md">trope docs</a>
+    <a href="docs/VISUAL_LANGUAGE.md">visual spec</a>
+    <a href="docs/REMIX_CATALOG.md">remix catalog</a>
+    <a href="https://github.com/merrypranxter/little_green_men" target="_blank">github</a>
+  </nav>
+  
+  <div class="footer">part of the merrypranxter generative art ecosystem</div>
+</body>
+</html>
