@@ -1,0 +1,31 @@
+# Node
+node_modules/
+npm-debug.log*
+.npm
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build output
+dist/
+build/
+out/
+
+# Env
+.env
+.env.local
+
+# Misc
+*.log
+*.tmp

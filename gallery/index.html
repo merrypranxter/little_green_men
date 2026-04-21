@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👽 little green men — gallery</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Share+Tech+Mono&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: #000;
+      color: #39FF14;
+      font-family: 'Chakra Petch', monospace;
+      min-height: 100vh;
+    }
+    
+    header {
+      padding: 2rem;
+      border-bottom: 2px solid #39FF14;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+    }
+    
+    .subtitle {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: #39FF1488;
+      margin-top: 0.3rem;
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+      padding: 2px;
+    }
+    
+    .sketch-card {
+      background: #0a0a0a;
+      border: 1px solid #39FF1433;
+      aspect-ratio: 1;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    
+    .sketch-card:hover {
+      border-color: #39FF14;
+    }
+    
+    .sketch-card iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+    
+    .sketch-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.5rem 0.75rem;
+      background: linear-gradient(transparent, #000000cc);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: #39FF14;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+      border: 1px solid #39FF1466;
+      font-size: 0.6rem;
+      margin-right: 0.3rem;
+      color: #39FF1488;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="../assets/svg/alien_head.svg" width="48" height="60" alt="alien">
+    <div>
+      <h1>👽 Little Green Men</h1>
+      <div class="subtitle">// a creative coding gallery — the alien as art trope</div>
+    </div>
+  </header>
+  
+  <div class="gallery" id="gallery">
+    <!-- Cards injected by JS -->
+  </div>
+  
+  <script>
+    const sketches = [
+      { id: 'dancer', label: 'alien_dancer', tags: ['p5js', 'animation', 'dance'], file: '../sketches/p5js/alien_dancer_standalone.html' },
+      { id: 'acid', label: 'alien_acid', tags: ['p5js', 'psychedelic', 'eyes'], file: '../sketches/p5js/alien_acid_standalone.html' },
+      { id: 'ufo', label: 'alien_ufo', tags: ['p5js', 'scene', 'classic'], file: '../sketches/p5js/alien_ufo_standalone.html' },
+      { id: 'pixel', label: 'alien_pixel', tags: ['p5js', 'pixel', '8bit'], file: '../sketches/p5js/alien_pixel_standalone.html' },
+      { id: 'shader_head', label: 'alien_head.frag', tags: ['glsl', 'sdf', 'glow'], file: '../shaders/alien_head_demo.html' },
+      { id: 'shader_psychedelic', label: 'alien_psychedelic.frag', tags: ['glsl', 'domain-warp', 'color'], file: '../shaders/alien_psychedelic_demo.html' },
+      { id: 'shader_scanlines', label: 'alien_scanlines.frag', tags: ['glsl', 'vhs', 'glitch'], file: '../shaders/alien_scanlines_demo.html' },
+    ];
+    
+    const gallery = document.getElementById('gallery');
+    sketches.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'sketch-card';
+      card.innerHTML = `
+        <iframe src="${s.file}" title="${s.label}" loading="lazy"></iframe>
+        <div class="sketch-label">
+          ${s.label}<br>
+          ${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+      `;
+      card.addEventListener('click', () => window.open(s.file, '_blank'));
+      gallery.appendChild(card);
+    });
+  </script>
+</body>
+</html>

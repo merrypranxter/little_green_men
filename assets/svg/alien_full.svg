@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-70 -80 140 220" width="140" height="220">
+  <!-- Little Green Man — full body SVG -->
+  
+  <!-- Body outline -->
+  <ellipse cx="0" cy="80" rx="22" ry="30" fill="#000000"/>
+  <!-- Body fill -->
+  <ellipse cx="0" cy="80" rx="17" ry="25" fill="#39FF14"/>
+  
+  <!-- Left arm outline -->
+  <ellipse cx="-30" cy="62" rx="15" ry="6" fill="#000000" transform="rotate(-20, -30, 62)"/>
+  <ellipse cx="-30" cy="62" rx="12" ry="4.5" fill="#39FF14" transform="rotate(-20, -30, 62)"/>
+  <!-- Left hand -->
+  <circle cx="-42" cy="57" r="7" fill="#000000"/>
+  <circle cx="-42" cy="57" r="5" fill="#39FF14"/>
+  
+  <!-- Right arm outline -->
+  <ellipse cx="30" cy="62" rx="15" ry="6" fill="#000000" transform="rotate(20, 30, 62)"/>
+  <ellipse cx="30" cy="62" rx="12" ry="4.5" fill="#39FF14" transform="rotate(20, 30, 62)"/>
+  <!-- Right hand -->
+  <circle cx="42" cy="57" r="7" fill="#000000"/>
+  <circle cx="42" cy="57" r="5" fill="#39FF14"/>
+  
+  <!-- Left leg outline -->
+  <rect x="-17" y="103" width="13" height="34" rx="4" fill="#000000"/>
+  <rect x="-15" y="104" width="10" height="30" rx="3" fill="#39FF14"/>
+  
+  <!-- Right leg outline -->
+  <rect x="5" y="103" width="13" height="34" rx="4" fill="#000000"/>
+  <rect x="7" y="104" width="10" height="30" rx="3" fill="#39FF14"/>
+  
+  <!-- Head outline -->
+  <ellipse cx="0" cy="-5" rx="52" ry="65" fill="#000000"/>
+  <!-- Green head -->
+  <ellipse cx="0" cy="-5" rx="46" ry="58" fill="#39FF14"/>
+  <!-- Left eye -->
+  <ellipse cx="-14" cy="-9" rx="13" ry="8.5" fill="#000000"
+    transform="rotate(-20, -14, -9)"/>
+  <!-- Right eye -->
+  <ellipse cx="14" cy="-9" rx="13" ry="8.5" fill="#000000"
+    transform="rotate(20, 14, -9)"/>
+  <!-- Mouth -->
+  <path d="M -10 16 Q 3 22 12 16" stroke="#000000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>

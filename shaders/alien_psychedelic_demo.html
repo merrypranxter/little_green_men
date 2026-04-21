@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_psychedelic shader</title>
+  <style>* { margin:0; padding:0; } html,body { width:100%; height:100%; background:#000; overflow:hidden; } canvas { display:block; width:100%; height:100%; }</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const VS=`attribute vec2 a_position;void main(){gl_Position=vec4(a_position,0.0,1.0);}`;
+const FS=`
+precision mediump float;
+uniform float iTime;
+uniform vec2 iResolution;
+vec2 rot2(vec2 p,float a){return vec2(p.x*cos(a)-p.y*sin(a),p.x*sin(a)+p.y*cos(a));}
+float sdE(vec2 p,vec2 r){return(length(p/r)-1.0)*min(r.x,r.y);}
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.0;a*=0.5;}return v;}
+vec3 hsv(float h,float s,float v){vec3 c=abs(mod(h*6.0+vec3(0,4,2),6.0)-3.0)-1.0;return v*mix(vec3(1),clamp(c,0.0,1.0),s);}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*iResolution.xy)/iResolution.y;
+  float t=iTime;
+  vec2 wuv=uv+vec2(fbm(uv+t*0.15),fbm(uv+vec2(3.4,1.7)+t*0.12))*0.3;
+  float bg=fbm(wuv*2.5+t*0.1);
+  vec3 col=hsv(bg+t*0.08,0.9,0.6);
+  vec2 aUV=uv+vec2(sin(uv.y*8.0+t)*0.012,cos(uv.x*8.0+t)*0.012);
+  float head=sdE(aUV,vec2(0.27,0.35)),outline=sdE(aUV,vec2(0.29,0.37));
+  vec2 le=rot2(aUV-vec2(-0.09,0.04),-0.35),re=rot2(aUV-vec2(0.09,0.04),0.35);
+  float leye=sdE(le,vec2(0.072,0.046)),reye=sdE(re,vec2(0.072,0.046));
+  vec3 aG=hsv(0.33+sin(t*0.5)*0.08,1.0,1.0);
+  col=mix(col,vec3(0),smoothstep(0.008,-0.008,outline));
+  col=mix(col,aG,smoothstep(0.008,-0.008,head));
+  col=mix(col,vec3(0),smoothstep(0.005,-0.005,leye));
+  col=mix(col,vec3(0),smoothstep(0.005,-0.005,reye));
+  float lp=sdE(le,vec2(0.032,0.032)),rp=sdE(re,vec2(0.032,0.032));
+  vec3 pC=hsv(t*0.3,1.0,1.0);
+  col=mix(col,pC,smoothstep(0.004,-0.004,lp));
+  col=mix(col,pC,smoothstep(0.004,-0.004,rp));
+  col+=aG*exp(max(0.0,-head)*-15.0)*0.5;
+  gl_FragColor=vec4(col,1.0);
+}`;
+const c=document.getElementById('c'),gl=c.getContext('webgl');
+function cs(t,s){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh;}
+const p=gl.createProgram();gl.attachShader(p,cs(gl.VERTEX_SHADER,VS));gl.attachShader(p,cs(gl.FRAGMENT_SHADER,FS));gl.linkProgram(p);gl.useProgram(p);
+const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+const pl=gl.getAttribLocation(p,'a_position');gl.enableVertexAttribArray(pl);gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+const tL=gl.getUniformLocation(p,'iTime'),rL=gl.getUniformLocation(p,'iResolution');
+function resize(){c.width=innerWidth;c.height=innerHeight;gl.viewport(0,0,c.width,c.height);}
+window.addEventListener('resize',resize);resize();
+const t0=performance.now();(function r(){const t=(performance.now()-t0)/1e3;gl.uniform1f(tL,t);gl.uniform2f(rL,c.width,c.height);gl.drawArrays(gl.TRIANGLES,0,6);requestAnimationFrame(r);})();
+</script></body></html>

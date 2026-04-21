@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alien_SKETCHNAME</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <!-- REPLACE: point to the actual sketch file -->
+  <script src="./alien_SKETCHNAME.js"></script>
+  <script>
+    // Make canvas fill viewport and handle resize
+    // This runs AFTER the sketch's setup() via p5 instance mode override.
+    // If your sketch uses createCanvas(400,400), replace with:
+    //   createCanvas(windowWidth, windowHeight)
+    // and add:
+    //   function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+  </script>
+</body>
+</html>
